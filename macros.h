@@ -1,0 +1,1 @@
+#define up_to(var, N) for (int var = 0; var < N; ++var)
