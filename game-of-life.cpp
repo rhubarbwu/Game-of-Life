@@ -10,6 +10,7 @@
 #include <ctime>
 
 #include "terminal.h"
+#include "transition.h"
 
 int main(int argc, char *argv[]) {
     if (argc < 5) {
@@ -41,6 +42,7 @@ int main(int argc, char *argv[]) {
     for (int t = 0; t < T; t++) {
         sleep(R);
         clear(H);
+        transition(field_rows, H, W);
         display(field_rows, H, W);
     }
 
