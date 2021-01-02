@@ -4,7 +4,7 @@ An implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conwa
 
 ## Building
 
-Run or copy the `cpp` Make rule to build the CPU program.
+Run or copy the `cpu` Make rule to build the CPU program.
 
 ```sh
 make cpu
@@ -13,15 +13,19 @@ make cpu
 ## Usage
 
 ```sh
-game-of-life-cpu <height> <width> <transitions> <rate> <fill>
+game-of-life-cpu <graphics> <height> <width> <transitions> <period> [<fill>]
 ```
 
 Where:
-
+- `graphics` is `0` for terminal and `1` for SDL graphics.
 - `height` is the number of rows in the field.
 - `width` is the number of columns in the field.
 - `transitions` is the number of transitions/cycles/iterations of the Game of Life.
-- `rate` is the approximate refresh rate between transitions.
-  - Behaviour is untested on Microsoft Windows.
+- `period` is the approximate time between transitions.
+  - `[1-100]` is recommended.
 - `fill` is the percentage of the field that is filled at the start. This is a probabilistic randomized initiation.
   - Use a value between `[0-100]`.
+
+### Quit
+
+Ctrl-C from terminal to quit. If in graphics mode, closing the window as normal (i.e. click red x) will also work.
