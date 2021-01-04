@@ -13,12 +13,12 @@
 #include "terminal.h"
 #include "transition.h"
 
+#define CLOCK_PER_CYCLE CLOCKS_PER_SEC / REFRESH_NSEC
 #define REFRESH_SEC 0
 #define REFRESH_NSEC 1000
-#define CLOCK_PER 1000
+#define Q 113
 
 bool interrupted = false;
-
 void sig_handler(int signo) {
     interrupted = true;
     (void)signo;
@@ -45,13 +45,11 @@ int main(int argc, char *argv[]) {
 
     bool field[H][W];
     for (int i = 0; i < H; i++) {
-        for (int j = 0; j < W; j++)
-            field[i][j] = rand() % 100 < O;
+        for (int j = 0; j < W; j++) field[i][j] = rand() % 100 < O;
     }
 
     bool *field_rows[H];
-    for (int i = 0; i < H; i++)
-        field_rows[i] = field[i];
+    for (int i = 0; i < H; i++) field_rows[i] = field[i];
 
     SDL_Renderer *renderer;
     SDL_Window *window;
@@ -59,36 +57,37 @@ int main(int argc, char *argv[]) {
     if (graphics) {
         init_draw(&renderer, &window, W, H, graphics);
         draw_matrix(renderer, field_rows, H, W, graphics);
-    } else {
+    } else
         display(field_rows, H, W);
-    }
 
     struct timespec wait_time;
     wait_time.tv_sec = REFRESH_SEC;
     wait_time.tv_nsec = REFRESH_NSEC;
 
     SDL_Event event;
-    int t = 0, u = 0;
+    int r = 0, t = 0;
     while (!interrupted) {
         nanosleep(&wait_time, NULL);
-        if (SDL_PollEvent(&event) && event.type == SDL_QUIT)
-            break;
+        if (SDL_PollEvent(&event) &&
+            (event.type == SDL_QUIT ||
+             (event.type == SDL_KEYDOWN &&
+              event.key.keysym.sym == 'q'))) break;
 
-        if (u++ < R * CLOCKS_PER_SEC / CLOCK_PER)
+        if (r++ < R * CLOCK_PER_CYCLE)
             continue;
         else
-            u = 0;
+            r = 0;
 
         transition(field_rows, H, W);
+        if (t++ >= T && T != -1) break;
 
-        if (!graphics) {
-            clear(H);
-            display(field_rows, H, W);
+        if (graphics) {
+            draw_matrix(renderer, field_rows, H, W, graphics);
             continue;
         }
 
-        draw_matrix(renderer, field_rows, H, W, graphics);
-        if (t++ >= T) break;
+        clear(H);
+        display(field_rows, H, W);
     }
 
     if (graphics) exit_draw(renderer, window);

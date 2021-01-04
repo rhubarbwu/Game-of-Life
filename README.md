@@ -28,6 +28,7 @@ Where:
 - `height` is the number of rows in the field.
 - `width` is the number of columns in the field.
 - `transitions` is the number of transitions/cycles/iterations of the Game of Life.
+  - Use `-1` for infinite transitions.
 - `period` is the approximate time between transitions.
   - `[1-100]` is recommended.
 - `fill` is the percentage of the field that is filled at the start. This is a probabilistic randomized initiation.
@@ -35,4 +36,5 @@ Where:
 
 ### Quit
 
-`Ctrl-C` from terminal to quit. If in graphics mode, closing the window as normal (i.e. click red x) will also work.
+- In the terminal, issue `Ctrl-C` to interrupt and quit.
+- If in graphics mode, pressing `q` or closing the window as normal (i.e. click red x) will also work.
