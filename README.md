@@ -4,6 +4,11 @@ An implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conwa
 
 ## Building
 
+Install the following dependencies:
+
+- [sdl2](https://www.libsdl.org/)
+- [sdl2-image](https://www.libsdl.org/projects/SDL_image/)
+
 Run or copy the `cpu` Make rule to build the CPU program.
 
 ```sh
@@ -13,11 +18,13 @@ make cpu
 ## Usage
 
 ```sh
-game-of-life-cpu <graphics> <height> <width> <transitions> <period> [<fill>]
+game-of-life-cpu <graphics-cell-width> <height> <width> <transitions> <period> [<fill>]
 ```
 
 Where:
-- `graphics` is `0` for terminal and `1` for SDL graphics.
+
+- `graphic-cell-width` is a positive integer to indicate the width and height of each cell in SDL graphics.
+  - Use `0` for terminal mode.
 - `height` is the number of rows in the field.
 - `width` is the number of columns in the field.
 - `transitions` is the number of transitions/cycles/iterations of the Game of Life.
@@ -28,4 +35,4 @@ Where:
 
 ### Quit
 
-Ctrl-C from terminal to quit. If in graphics mode, closing the window as normal (i.e. click red x) will also work.
+`Ctrl-C` from terminal to quit. If in graphics mode, closing the window as normal (i.e. click red x) will also work.

@@ -26,7 +26,7 @@ void sig_handler(int signo) {
 
 int main(int argc, char *argv[]) {
     if (argc < 6) {
-        printf("usage: game-of-life <graphics> <height> <width> <transitions> <period> [<fill>]\n");
+        printf("usage: game-of-life <graphics-cell-width> <height> <width> <transitions> <period> [<fill>]\n");
         exit(1);
     }
     if (signal(SIGINT, sig_handler) == SIG_ERR) {
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    bool graphics = atoi(argv[1]);
+    int graphics = atoi(argv[1]);
     int H = atoi(argv[2]), W = atoi(argv[3]);
     int T = atoi(argv[4]);
     int R = atoi(argv[5]);
@@ -57,8 +57,8 @@ int main(int argc, char *argv[]) {
     SDL_Window *window;
 
     if (graphics) {
-        init_draw(&renderer, &window, W, H);
-        draw_matrix(renderer, field_rows, H, W);
+        init_draw(&renderer, &window, W, H, graphics);
+        draw_matrix(renderer, field_rows, H, W, graphics);
     } else {
         display(field_rows, H, W);
     }
@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
-        draw_matrix(renderer, field_rows, H, W);
+        draw_matrix(renderer, field_rows, H, W, graphics);
         if (t++ >= T) break;
     }
 
