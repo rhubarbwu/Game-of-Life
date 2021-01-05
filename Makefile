@@ -1,5 +1,5 @@
-game-of-life-cpu: game-of-life.cpp
-	g++ -Wall -Wextra -Wshadow -o game-of-life-cpu game-of-life.cpp draw.cpp `sdl2-config --libs --cflags` -ggdb3 -O0 -Wall -lSDL2_image -lm
+gol-cpu: game-of-life.cpp
+	g++ -Wall -Wextra -Wshadow -o gol-cpu game-of-life.cpp graphics.cpp `sdl2-config --libs --cflags` -ggdb3 -O0 -Wall -lSDL2_image -lm
 
 clean:
-	rm game-of-life-cpu
+	rm gol-cpu
