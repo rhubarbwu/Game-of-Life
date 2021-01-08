@@ -1,14 +1,18 @@
 #ifndef BOILERPLATE_H
 #define BOILERPLATE_H
 
-#define SANITY                                                                                                  \
-    if (argc < 6) {                                                                                             \
-        printf("usage: game-of-life <graphics-cell-width> <height> <width> <transitions> <period> [<fill>]\n"); \
-        exit(1);                                                                                                \
-    }                                                                                                           \
-    if (signal(SIGINT, sig_handler) == SIG_ERR) {                                                               \
-        printf("\ncan't catch SIGINT\n");                                                                       \
-        exit(1);                                                                                                \
+#include <iostream>
+
+using namespace std;
+
+#define SANITY                                                                                                        \
+    if (argc < 6) {                                                                                                   \
+        cout << "usage: game-of-life <graphics-cell-width> <height> <width> <transitions> <period> [<fill>]" << endl; \
+        exit(1);                                                                                                      \
+    }                                                                                                                 \
+    if (signal(SIGINT, sig_handler) == SIG_ERR) {                                                                     \
+        cout << "\ncan't catch SIGINT" << endl;                                                                       \
+        exit(1);                                                                                                      \
     }
 
 #define ARGUMENTS                             \

@@ -1,2 +1,3 @@
 gol-cpu
 gol-cuda
+*.o

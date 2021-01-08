@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "macros.h"
+
 using namespace std;
 void clear(int H) {
     for (int i = 0; i < H; i++)
@@ -9,7 +11,7 @@ void clear(int H) {
 void display(int** field, int H, int W) {
     for (int i = 0; i < H; i++) {
         for (int j = 0; j < W; j++)
-            cout << (field[i][j] ? "O" : " ");
+            cout << (field[i][j] == ALIVE ? "O" : " ");
         cout << "\n";
     }
 }

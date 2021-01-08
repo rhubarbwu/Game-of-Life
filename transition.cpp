@@ -13,8 +13,8 @@ void transition(int **field, int H, int W) {
             bool above = (i > 0 && prev_field[i - 1][j] == ALIVE);
             bool below = (i < H - 1 && prev_field[i + 1][j] == ALIVE);
 
-            int sum = left + right + above + below;
-            if (sum / 2 == 1) {
+            int neighbours = left + right + above + below;
+            if (neighbours / 2 == 1) {
                 field[i][j] = ALIVE;
                 continue;
             }
