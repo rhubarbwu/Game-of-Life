@@ -1,7 +1,5 @@
-#define CLOCK_PER_CYCLE CLOCKS_PER_SEC / REFRESH_NS
-#define REFRESH_S 0
-#define REFRESH_NS 1000
-#define Q 113
+#ifndef BOILERPLATE_H
+#define BOILERPLATE_H
 
 #define SANITY                                                                                                  \
     if (argc < 6) {                                                                                             \
@@ -25,3 +23,5 @@ void sig_handler(int signo) {
     interrupted = true;
     (void)signo;
 }
+
+#endif

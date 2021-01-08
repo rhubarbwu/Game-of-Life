@@ -2,6 +2,10 @@
 
 An implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in C++ (or CUDA) for the terminal and the C graphics library.
 
+### Configuration
+
+There are five color stages for cells: alive, dead, and three dying stages in between. They're configured in `colours.h`.
+
 ## Building
 
 Install the following dependencies:

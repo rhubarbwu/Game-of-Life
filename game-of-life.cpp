@@ -9,8 +9,9 @@
 #include <unistd.h>
 #endif
 
+#include "boilerplate.h"
 #include "graphics.h"
-#include "helpers.h"
+#include "macros.h"
 #include "terminal.h"
 #include "transition.h"
 
@@ -21,12 +22,12 @@ int main(int argc, char *argv[]) {
     time_t timer;
     srand((unsigned)time(&timer));
 
-    bool field[H][W];
+    int field[H][W];
     for (int i = 0; i < H; i++)
         for (int j = 0; j < W; j++)
-            field[i][j] = rand() % 100 < O;
+            field[i][j] = rand() % 100 < O ? ALIVE : 0;
 
-    bool *field_rows[H];
+    int *field_rows[H];
     for (int i = 0; i < H; i++) field_rows[i] = field[i];
 
     SDL_Renderer *renderer;
