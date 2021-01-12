@@ -10,5 +10,8 @@ gol-cuda: gol-cuda.o field_cuda.o terminal.o | *.h
 %.o: %.cpp
 	${CXX} -c $< -o $@
 
+field_cuda.o: field_cuda.cu field_cuda.h
+	nvcc $(INC) -c -o field_cuda.o field_cuda.cu 
+
 clean:
 	rm -rf gol-cpu gol-cuda *.o
