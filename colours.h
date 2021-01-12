@@ -1,5 +1,5 @@
-#ifndef TERMINAL_H
-#define TERMINAL_H
+#ifndef COLOURS_H
+#define COLOURS_H
 
 #define DELTA MAX_ALPHA / ALIVE
 #define MAX_ALPHA 255

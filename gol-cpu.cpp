@@ -7,11 +7,13 @@
 #include <unistd.h>
 #endif
 
+#include <SDL2/SDL.h>
+
 #include "boilerplate.h"
+#include "field.h"
 #include "graphics.h"
 #include "macros.h"
 #include "terminal.h"
-#include "transition.h"
 
 int main(int argc, char *argv[]) {
     SANITY;
@@ -20,22 +22,19 @@ int main(int argc, char *argv[]) {
     time_t timer;
     srand((unsigned)time(&timer));
 
-    int field[H][W];
-    for (int i = 0; i < H; i++)
-        for (int j = 0; j < W; j++)
-            field[i][j] = rand() % 100 < O ? ALIVE : 0;
+    int field[H * W];
 
-    int *field_rows[H];
-    for (int i = 0; i < H; i++) field_rows[i] = field[i];
+    for (int i = 0; i < H * W; i++)
+        field[i] = rand() % 100 < O ? ALIVE : 0;
 
     SDL_Renderer *renderer;
     SDL_Window *window;
 
     if (graphics) {
         init_draw(&renderer, &window, W, H, graphics);
-        draw_matrix(renderer, field_rows, H, W, graphics);
+        draw_matrix(renderer, field, H, W, graphics);
     } else
-        display(field_rows, H, W);
+        display(field, H, W);
 
     struct timespec wait_time = {.tv_sec = REFRESH_S, .tv_nsec = REFRESH_NS};
     int r = 0, t = 0;
@@ -52,15 +51,15 @@ int main(int argc, char *argv[]) {
         else
             r = 0;
 
-        transition(field_rows, H, W);
+        transition(field, H, W);
         if (t++ >= T && T != -1) break;
 
         if (graphics) {
-            draw_matrix(renderer, field_rows, H, W, graphics);
+            draw_matrix(renderer, field, H, W, graphics);
             continue;
         }
         clear(H);
-        display(field_rows, H, W);
+        display(field, H, W);
     }
 
     if (graphics) exit_draw(renderer, window);

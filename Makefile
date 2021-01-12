@@ -1,15 +1,14 @@
-CC = g++
-CFLAGS = -Wall -Wextra -Wshadow
-SDL_FLAGS = 
+CXX = g++
+FLAGS = -Wall -Wextra -Wshadow
 
-gol-cuda: game-of-life.cu terminal.o | *.h
-	nvcc $^ -o gol-cuda
+gol-cpu: gol-cpu.o field.o graphics.o terminal.o | *.h
+	${CXX} ${FLAGS} $^ -o gol-cpu -lSDL2 -lcudart
 
-gol-cpu: game-of-life.o graphics.o terminal.o transition.o | *.h
-	${CC} ${CFLAGS} $^ -o gol-cpu `sdl2-config --libs --cflags` -ggdb3 -O0 -Wall -lSDL2_image -lm
+gol-cuda: gol-cuda.o field_cuda.o terminal.o | *.h
+	${CXX} ${FLAGS} -o gol-cuda $^ -lSDL2 -lcudart
 
 %.o: %.cpp
-	${CC} ${CFLAGS} -c $^
+	${CXX} -c $< -o $@
 
 clean:
 	rm -rf gol-cpu gol-cuda *.o

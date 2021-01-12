@@ -1,4 +1,5 @@
-#include <SDL2/SDL.h>
+
+#include "graphics.h"
 
 #include "colours.h"
 #include "macros.h"
@@ -14,13 +15,13 @@ void init_draw(SDL_Renderer **renderer_ptr, SDL_Window **window_ptr, int win_w, 
     SDL_RenderPresent(*renderer_ptr);
 }
 
-void draw_matrix(SDL_Renderer *renderer, int **field, int H, int W, int cell_size) {
+void draw_matrix(SDL_Renderer *renderer, int *field, int H, int W, int cell_size) {
     SDL_Rect rect = {.x = 0, .y = 0, .w = cell_size, .h = cell_size};
 
     for (int i = 0; i < H; i++) {
         for (int j = 0; j < W; j++) {
             int hex;
-            switch (field[i][j]) {
+            switch (field[i * W + j]) {
                 case 0:
                     hex = COLOUR_0;
                     break;

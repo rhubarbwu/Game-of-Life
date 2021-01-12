@@ -1,6 +1,8 @@
 #ifndef BOILERPLATE_H
 #define BOILERPLATE_H
 
+#include <signal.h>
+
 #include <iostream>
 
 using namespace std;
