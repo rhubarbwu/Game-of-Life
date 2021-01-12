@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     srand((unsigned)time(&timer));
 
     int field[H * W];
-    initField(field, H, W, O);
+    initField(field, H, W, S);
 
     display(field, H, W);
 

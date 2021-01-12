@@ -17,17 +17,19 @@ using namespace std;
         exit(1);                                                                                                      \
     }
 
-#define ARGUMENTS                             \
-    int graphics = atoi(argv[1]);             \
-    int H = atoi(argv[2]), W = atoi(argv[3]); \
-    int T = atoi(argv[4]);                    \
-    int R = atoi(argv[5]);                    \
-    int O = argc == 7 ? atoi(argv[6]) : 10;
+#define ARGUMENTS                         \
+    S = atoi(argv[1]);                    \
+    H = atoi(argv[2]), W = atoi(argv[3]); \
+    T = atoi(argv[4]), P = atoi(argv[5]); \
+    F = argc == 7 ? atoi(argv[6]) : 10;   \
+    total_pixels = H * W * S * S;
 
 bool interrupted = false;
 void sig_handler(int signo) {
     interrupted = true;
     (void)signo;
+    cout << "\n"
+         << endl;
 }
 
 #endif

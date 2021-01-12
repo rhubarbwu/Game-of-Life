@@ -3,7 +3,7 @@
 
 #include "macros.h"
 
-void clear(int H);
-void display(int* field, int H, int W);
+void clear(unsigned H);
+void display(unsigned* field, unsigned H, unsigned W);
 
 #endif

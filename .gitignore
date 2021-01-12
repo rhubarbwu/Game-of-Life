@@ -1,3 +1,4 @@
 gol-cpu
 gol-cuda
+*.co
 *.o

@@ -1,12 +1,3 @@
-#include <signal.h>
-#include <time.h>
-
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <unistd.h>
-#endif
-
 #include <SDL2/SDL.h>
 
 #include "boilerplate.h"
@@ -15,29 +6,29 @@
 #include "macros.h"
 #include "terminal.h"
 
+int T;
+unsigned S, H, W, P, F, total_pixels;
+
+SDL_Renderer *renderer;
+SDL_Window *window;
+
 int main(int argc, char *argv[]) {
     SANITY;
     ARGUMENTS;
 
-    time_t timer;
-    srand((unsigned)time(&timer));
+    unsigned field[H * W];
+    initField(field, H, W, F);
 
-    int field[H * W];
+    uint32_t time_step = P * 1000;
+    uint32_t next_time_step = SDL_GetTicks();
 
-    for (int i = 0; i < H * W; i++)
-        field[i] = rand() % 100 < O ? ALIVE : 0;
-
-    SDL_Renderer *renderer;
-    SDL_Window *window;
-
-    if (graphics) {
-        init_draw(&renderer, &window, W, H, graphics);
-        draw_matrix(renderer, field, H, W, graphics);
+    if (S) {
+        init_draw(&renderer, &window, W, H, S);
+        draw_matrix(renderer, field, H, W, S);
     } else
         display(field, H, W);
 
-    struct timespec wait_time = {.tv_sec = REFRESH_S, .tv_nsec = REFRESH_NS};
-    int r = 0, t = 0;
+    unsigned t = 0;
     while (!interrupted) {
         SDL_Event event;
         if (SDL_PollEvent(&event) &&
@@ -45,23 +36,21 @@ int main(int argc, char *argv[]) {
              (event.type == SDL_KEYDOWN &&
               event.key.keysym.sym == 'q'))) break;
 
-        nanosleep(&wait_time, NULL);
-        if (r++ < R * CLOCK_PER_CYCLE)
-            continue;
-        else
-            r = 0;
+        uint32_t now = SDL_GetTicks();
+        if (next_time_step <= now) {
+            if (S) {
+                draw_matrix(renderer, field, H, W, S);
+            } else {
+                clear(H);
+                display(field, H, W);
+            }
 
-        transition(field, H, W);
-        if (t++ >= T && T != -1) break;
-
-        if (graphics) {
-            draw_matrix(renderer, field, H, W, graphics);
-            continue;
+            transition(field, H, W);
+            if (t++ >= T && T != -1) break;
+            next_time_step += time_step;
         }
-        clear(H);
-        display(field, H, W);
     }
 
-    if (graphics) exit_draw(renderer, window);
+    if (S) exit_draw(renderer, window);
     return 0;
 }
