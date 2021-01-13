@@ -21,8 +21,7 @@ using namespace std;
     S = atoi(argv[1]);                    \
     H = atoi(argv[2]), W = atoi(argv[3]); \
     T = atoi(argv[4]), P = atoi(argv[5]); \
-    F = argc == 7 ? atoi(argv[6]) : 10;   \
-    total_pixels = H * W * S * S;
+    F = argc == 7 ? atoi(argv[6]) : 10;
 
 bool interrupted = false;
 void sig_handler(int signo) {

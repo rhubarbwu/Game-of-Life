@@ -7,7 +7,7 @@
 #include "terminal.h"
 
 int T;
-unsigned S, H, W, P, F, total_pixels;
+unsigned S, H, W, P, F;
 
 SDL_Renderer *renderer;
 SDL_Window *window;

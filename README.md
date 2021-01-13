@@ -10,7 +10,8 @@ There are five color stages for cells: alive, dead, and three dying stages in be
 
 Install the following dependencies:
 
-- [g++](https://linux.die.net/man/1/g++) (CPU)
+- A C++ compiler (i.e. [g++](https://linux.die.net/man/1/g++) or [clang](https://clang.llvm.org/))
+  - Set `CXX` in the `Makefile`.
 - [nvcc](https://developer.nvidia.com/cuda-toolkit) (CUDA)
 - [sdl2](https://www.libsdl.org/)
 - [sdl2-image](https://www.libsdl.org/projects/SDL_image/)
@@ -51,4 +52,4 @@ Where:
 
 ## Acknowledgements
 
-- [fsan/cuda_on_sdl](https://github.com/fsan/cuda_on_sdl) for guiding on SDL graphics and CUDA rendering.
+- [fsan/cuda_on_sdl](https://github.com/fsan/cuda_on_sdl) for guidance on SDL graphics and CUDA rendering.

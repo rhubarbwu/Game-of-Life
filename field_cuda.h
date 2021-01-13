@@ -1,5 +1,5 @@
-#ifndef FIELD_H
-#define FIELD_H
+#ifndef FIELD_CUDA_H
+#define FIELD_CUDA_H
 
 #include <curand.h>
 #include <curand_kernel.h>
@@ -10,7 +10,7 @@
 
 #define MAX 100
 
-void initField(int *field, int H, int W, int fill);
-void transition(int *field, int H, int W);
+void initField(unsigned *field, unsigned H, unsigned W, unsigned F);
+void transition(unsigned *field, unsigned H, unsigned W);
 
 #endif

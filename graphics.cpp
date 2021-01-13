@@ -1,8 +1,4 @@
-
 #include "graphics.h"
-
-#include "colours.h"
-#include "macros.h"
 
 const unsigned COLOURS[5] = BLUE;
 
@@ -23,7 +19,7 @@ void draw_matrix(SDL_Renderer *renderer, unsigned *field, unsigned H, unsigned W
     for (unsigned i = 0; i < H; i++) {
         for (unsigned j = 0; j < W; j++) {
             unsigned hex;
-            if (field[i * W + j] <= 4)
+            if (field[i * W + j] <= ALIVE)
                 hex = COLOURS[field[i * W + j]];
             SDL_SetRenderDrawColor(renderer,
                                    hex >> 16 & 0xFF,
