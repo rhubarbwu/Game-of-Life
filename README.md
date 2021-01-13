@@ -41,7 +41,7 @@ Where:
 - `width` is the number of columns in the field.
 - `transitions` is the number of transitions/cycles/iterations of the Game of Life.
   - Use `-1` for infinite transitions.
-- `period` is the number of seconds between transitions.
+- `period` is the number of milliseconds between transitions.
 - `fill` is the percentage of the field that is filled at the start. This is a probabilistic randomized initiation.
   - Use a value between `[0-100]`.
 

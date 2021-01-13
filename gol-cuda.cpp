@@ -10,8 +10,8 @@
 
 using namespace std;
 
+unsigned S, H, W, F, P;
 int T;
-unsigned S, H, W, P, F;
 
 SDL_Renderer* renderer;
 SDL_Surface* screen;
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    uint32_t time_step = P * 1000;
+    uint32_t time_step = P;
     uint32_t next_time_step = SDL_GetTicks();
 
     if (S) {

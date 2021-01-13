@@ -6,8 +6,8 @@
 #include "macros.h"
 #include "terminal.h"
 
-int T;
 unsigned S, H, W, P, F;
+int T;
 
 SDL_Renderer *renderer;
 SDL_Window *window;
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     unsigned field[H * W];
     initField(field, H, W, F);
 
-    uint32_t time_step = P * 1000;
+    uint32_t time_step = P;
     uint32_t next_time_step = SDL_GetTicks();
 
     if (S) {

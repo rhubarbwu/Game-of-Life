@@ -1,4 +1,4 @@
-CXX = clang++ # or g++
+CXX = g++ # or clang
 FLAGS = -Wall -Wextra -Wshadow
 
 .PHONY: clean
@@ -7,7 +7,7 @@ gol-cpu: gol-cpu.o field.o graphics.o terminal.o | *.h
 	${CXX} ${FLAGS} $^ -o gol-cpu -lSDL2
 
 gol-cuda: gol-cuda.o field_cuda.co graphics_cuda.co terminal.o | *.h
-	${CXX} ${FLAGS} -o gol-cuda $^ -lSDL2
+	${CXX} ${FLAGS} -o gol-cuda $^ -lSDL2 -lcudart
 
 gol-cuda.o: gol-cuda.cpp boilerplate.h macros.h terminal.h
 	${CXX} -c -o gol-cuda.o gol-cuda.cpp
