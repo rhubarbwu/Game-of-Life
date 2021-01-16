@@ -3,8 +3,8 @@
 
 #include "boilerplate.h"
 #include "colours.h"
-#include "field_cuda.h"
-#include "graphics_cuda.h"
+#include "field-cuda.h"
+#include "graphics-cuda.h"
 #include "macros.h"
 #include "terminal.h"
 
@@ -86,7 +86,11 @@ int main(int argc, char* argv[]) {
         if (next_time_step <= now) {
             if (S) {
                 SDL_LockSurface(screen);
-                render(screen, graphics_buffer, field, S, H, W);
+                if (render(screen, graphics_buffer, field, S, H, W) != 0) {
+                    cerr << "cuda error" << endl;
+                    S = 0;
+                    continue;
+                }
                 SDL_UnlockSurface(screen);
                 SDL_UpdateTexture(texture, NULL,
                                   screen->pixels,

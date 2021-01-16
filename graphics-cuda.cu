@@ -1,4 +1,4 @@
-#include "graphics_cuda.h"
+#include "graphics-cuda.h"
 
 using namespace std;
 
@@ -39,7 +39,7 @@ __global__ void d_render(uint32_t* buf, unsigned* d_field, unsigned S, unsigned 
     buf[pos] = getPixColor(d_field, S, H, W, xPix, yPix);
 }
 
-__host__ void render(SDL_Surface *screen,
+__host__ int render(SDL_Surface *screen,
     void* cuda_pixels,
     unsigned* field, unsigned S, unsigned H, unsigned W) {
 
@@ -57,6 +57,5 @@ __host__ void render(SDL_Surface *screen,
     cudaMemcpy(field, d_field, (H * W) * sizeof(unsigned), cudaMemcpyDeviceToHost);
     cudaFree(d_field);
 
-    if (gpuBlit(cuda_pixels, screen->pixels, H*W*S*S) != 0)
-        cerr << "cuda error" << endl;
+    return gpuBlit(cuda_pixels, screen->pixels, H*W*S*S);
 }

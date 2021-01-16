@@ -1,8 +1,4 @@
-#include <stdio.h>
-
-#include <iostream>
-
-#include "field_cuda.h"
+#include "field-cuda.h"
 
 using namespace std;
 
