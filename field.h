@@ -6,7 +6,7 @@
 
 #include "macros.h"
 
-void initField(unsigned *field, unsigned H, unsigned W, unsigned fill);
+void init_field(unsigned *field, unsigned H, unsigned W, unsigned fill);
 void transition(unsigned *field, unsigned H, unsigned W);
 
 #endif

@@ -9,7 +9,7 @@ __global__ void d_init(unsigned *d_field, unsigned F) {
     d_field[threadIdx.x] = rand * MAX < F ? ALIVE : 0;
 }
 
-__host__ void initField(unsigned *field, unsigned H, unsigned W, unsigned F) {
+__host__ void init_field(unsigned *field, unsigned H, unsigned W, unsigned F) {
     unsigned *d_field;
     cudaMalloc((void **)&d_field, (H * W) * sizeof(unsigned));
 

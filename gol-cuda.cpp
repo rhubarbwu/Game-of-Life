@@ -23,15 +23,12 @@ int main(int argc, char* argv[]) {
 
     SDL_CHECK_INIT
 
-    uint32_t time_step = P;
-    uint32_t next_time_step = SDL_GetTicks();
-
     if (S) {
         SDL_BOILERPLATE
     }
 
     unsigned field[H * W];
-    initField(field, H, W, F);
+    init_field(field, H, W, F);
 
     auto last_time = system_clock::now() - milliseconds(P);
 

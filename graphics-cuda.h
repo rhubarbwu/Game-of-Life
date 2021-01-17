@@ -107,3 +107,5 @@ int render(SDL_Surface* screen,
 #define SDL_WINDOW ;
 
 #endif
+
+#endif

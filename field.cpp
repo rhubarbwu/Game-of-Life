@@ -1,6 +1,6 @@
 #include "field.h"
 
-void initField(unsigned *field, unsigned H, unsigned W, unsigned fill) {
+void init_field(unsigned *field, unsigned H, unsigned W, unsigned fill) {
     time_t timer;
     srand((unsigned)time(&timer));
 

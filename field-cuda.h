@@ -10,7 +10,7 @@
 
 #define MAX 100
 
-void initField(unsigned *field, unsigned H, unsigned W, unsigned F);
+void init_field(unsigned *field, unsigned H, unsigned W, unsigned F);
 void transition(unsigned *field, unsigned H, unsigned W);
 
 #endif

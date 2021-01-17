@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     ARGUMENTS
 
     unsigned field[H * W];
-    initField(field, H, W, F);
+    init_field(field, H, W, F);
 
     if (S) SDL_DRAW_INIT
 

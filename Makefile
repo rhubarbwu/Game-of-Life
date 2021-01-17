@@ -1,7 +1,7 @@
 CXX = g++
 FLAGS = -Wall -Wextra -Wshadow
 
-.PHONY: clean
+.PHONY: all clean
 
 gol-cpu: gol-cpu.o field.o graphics.o terminal.o 
 	${CXX} ${FLAGS} $^ -o gol-cpu -lSDL2 
@@ -21,11 +21,13 @@ gol-cuda-term: gol-cuda.cto field-cuda.co terminal.o
 %.co: %.cu %.h
 	nvcc -c $< -o $@ 
 
-%.cto: %.cu %.h
+gol-cuda.cto: gol-cuda.cpp
 	nvcc -c $< -o $@ -DNO_SDL
 
 %.o: %.cpp %.h
-	${CXX} -c $< -o $@ 
+	${CXX} -c $< -o $@
+
+all: gol-cpu gol-cpu-term gol-cuda gol-cuda-term
 
 clean:
 	rm -rf gol-cpu gol-cpu-term gol-cuda gol-cuda-term *.co *.o *.to *.cto
