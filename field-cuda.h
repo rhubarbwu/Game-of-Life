@@ -5,8 +5,9 @@
 #include <curand_kernel.h>
 #include <math.h>
 
+#include "colours.h"
 #include "cuda.h"
-#include "macros.h"
+#include "rules.h"
 
 #define MAX 100
 

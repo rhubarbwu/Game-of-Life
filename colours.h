@@ -1,6 +1,8 @@
 #ifndef COLOURS_H
 #define COLOURS_H
 
+#define ALIVE 4
+
 #define R_MASK 0x00FF0000
 #define G_MASK 0x0000FF00
 #define B_MASK 0x000000FF

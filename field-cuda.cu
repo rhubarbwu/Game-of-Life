@@ -22,22 +22,18 @@ __host__ void init_field(unsigned *field, unsigned H, unsigned W, unsigned F) {
     cudaFree(d_field);
 }
 
-__global__ void d_transition(unsigned *d_field, unsigned H, unsigned W) {
+__global__ void d_transition(unsigned *field, unsigned H, unsigned W) {
+    unsigned *prev_field = field;
+
     unsigned index = threadIdx.x;
-    unsigned i = index / W;
-    unsigned j = index % W;
+    unsigned i = index / W;                                 
+    unsigned j = index % W;                                 
 
-    bool left = (j > 0 && d_field[index - 1] == ALIVE);
-    bool right = (j < W - 1 && d_field[index + 1] == ALIVE);
-    bool above = (i > 0 && d_field[index - W] == ALIVE);
-    bool below = (i < H - 1 && d_field[index + W] == ALIVE);
+    unsigned neighbours = 0;
+    NEIGHBOURS
 
-    unsigned neighbours = left + right + above + below;
     __syncthreads();
-    if (neighbours / 2 == 1)
-        d_field[index] = ALIVE;
-    else
-        d_field[index] = d_field[index] == 0 ? 0 : d_field[index] - 1;
+    RULE
 }
 
 __host__ void transition(unsigned *field, unsigned H, unsigned W) {

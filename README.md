@@ -4,7 +4,15 @@ An implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conwa
 
 ### Configuration
 
-There are five color stages for cells: alive, dead, and three dying stages in between. They're configured in `colours.h`. By default, the CPU and CUDA versions have a (clever) colour difference.
+Some things are easy to configure.
+
+#### Colours
+
+There are five color stages for cells: alive, dead, and three dying stages in between. They're configured in `colours.h`. By default, the CPU and CUDA versions have some clever colours.
+
+#### Rules
+
+Additionally, by default the original rules from [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) are used, and they're configured in `rules.h`, which is used by all versions.
 
 ## Building
 
@@ -13,8 +21,7 @@ Install the following dependencies:
 - [g++](https://linux.die.net/man/1/g++)
   - [clang++](https://clang.llvm.org/) was previous (erroneously) used.
 - [nvcc](https://developer.nvidia.com/cuda-toolkit) (CUDA only)
-- [sdl2](https://www.libsdl.org/) (optional)
-- [sdl2-image](https://www.libsdl.org/projects/SDL_image/) (optional)
+- [sdl2](https://www.libsdl.org/) and [sdl2-image](https://www.libsdl.org/projects/SDL_image/) (optional)
 
 And run Make rule for the desired version.
 
@@ -22,7 +29,7 @@ And run Make rule for the desired version.
 make gol-cpu
 make gol-cuda
 
-# If you do not have sdl2 or sdl2-image
+# If you do not have sdl2/sdl2-image
 make gol-cpu-term
 make gol-cuda-term
 ```

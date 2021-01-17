@@ -3,7 +3,6 @@
 #include "boilerplate.h"
 #include "field.h"
 #include "graphics.h"
-#include "macros.h"
 #include "terminal.h"
 
 unsigned S, H, W, P, F;

@@ -8,7 +8,6 @@
 #include <stdint.h>
 
 #include "colours.h"
-#include "macros.h"
 
 __device__ const unsigned COLOURS[5] = GREEN;
 

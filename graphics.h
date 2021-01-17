@@ -1,8 +1,6 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#include "macros.h"
-
 #ifndef NO_SDL
 #include <SDL2/SDL.h>
 

@@ -9,25 +9,15 @@ void init_field(unsigned *field, unsigned H, unsigned W, unsigned fill) {
 }
 
 void transition(unsigned *field, unsigned H, unsigned W) {
-    unsigned prev_field[H][W];
-    for (unsigned i = 0; i < H; i++)
-        for (unsigned j = 0; j < W; j++)
-            prev_field[i][j] = field[i * W + j];
+    unsigned prev_field[H * W];
+    for (unsigned i = 0; i < H * W; i++) prev_field[i] = field[i];
 
-    for (unsigned i = 0; i < H; i++) {
-        for (unsigned j = 0; j < W; j++) {
-            bool left = (j > 0 && prev_field[i][j - 1] == ALIVE);
-            bool right = (j < W - 1 && prev_field[i][j + 1] == ALIVE);
-            bool above = (i > 0 && prev_field[i - 1][j] == ALIVE);
-            bool below = (i < H - 1 && prev_field[i + 1][j] == ALIVE);
+    for (unsigned index = 0; index < H * W; index++) {
+        unsigned i = index / W;
+        unsigned j = index % W;
 
-            unsigned neighbours = left + right + above + below;
-            if (neighbours / 2 == 1) {
-                field[i * W + j] = ALIVE;
-                continue;
-            }
-
-            field[i * W + j] = prev_field[i][j] == 0 ? 0 : prev_field[i][j] - 1;
-        }
+        unsigned neighbours = 0;
+        NEIGHBOURS
+        RULE
     }
 }

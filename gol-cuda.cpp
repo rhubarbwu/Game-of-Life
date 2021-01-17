@@ -7,7 +7,6 @@
 #include "colours.h"
 #include "field-cuda.h"
 #include "graphics-cuda.h"
-#include "macros.h"
 #include "terminal.h"
 
 using namespace std::chrono;
