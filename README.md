@@ -13,30 +13,30 @@ Install the following dependencies:
 - [g++](https://linux.die.net/man/1/g++)
   - [clang++](https://clang.llvm.org/) was previous (erroneously) used.
 - [nvcc](https://developer.nvidia.com/cuda-toolkit) (CUDA only)
-- [sdl2](https://www.libsdl.org/)
-- [sdl2-image](https://www.libsdl.org/projects/SDL_image/)
+- [sdl2](https://www.libsdl.org/) (optional)
+- [sdl2-image](https://www.libsdl.org/projects/SDL_image/) (optional)
 
-And run the desired Make rule.
+And run Make rule for the desired version.
 
 ```sh
 make gol-cpu
 make gol-cuda
+
+# If you do not have sdl2 or sdl2-image
+make gol-cpu-term
+make gol-cuda-term
 ```
 
 ## Usage
 
 ```sh
-# CPU
-gol-cpu <graphics-cell-size> <height> <width> <transitions> <period> [<fill>]
-
-# CUDA
-gol-cuda <graphics-cell-size> <height> <width> <transitions> <period> [<fill>]
+gol-<version> <graphics-cell-size> <height> <width> <transitions> <period> [<fill>]
 ```
 
 Where:
 
 - `graphic-cell-size` is a non-negative integer to indicate the width and height of each cell in SDL graphics.
-  - Use `0` for terminal mode.
+  - Use `0` for terminal mode. (Required for `*-term` versions.)
 - `height` is the number of rows in the field.
 - `width` is the number of columns in the field.
 - `transitions` is the number of transitions/cycles/iterations of the Game of Life.

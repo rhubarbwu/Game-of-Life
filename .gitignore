@@ -1,4 +1,8 @@
 gol-cpu
+gol-cpu-term
 gol-cuda
+gol-cuda-term
 *.co
 *.o
+*.to
+*.cto

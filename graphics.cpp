@@ -1,3 +1,5 @@
+#ifndef NO_SDL
+
 #include "graphics.h"
 
 const unsigned COLOURS[5] = BLUE;
@@ -40,3 +42,5 @@ void exit_draw(SDL_Renderer *renderer, SDL_Window *window) {
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
+
+#endif
