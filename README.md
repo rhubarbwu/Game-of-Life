@@ -18,9 +18,10 @@ Additionally, by default the original rules from [Conway's Game of Life](https:/
 
 Install the following dependencies:
 
-- [g++](https://linux.die.net/man/1/g++)
-  - [clang++](https://clang.llvm.org/) was previous (erroneously) used.
+- [g++](https://linux.die.net/man/1/g++) or [clang++](https://clang.llvm.org/).
+  - Prepend `CXX=<compiler>` to your make command to specify.
 - [nvcc](https://developer.nvidia.com/cuda-toolkit) (CUDA only)
+  - Make sure the `$PATH` is set correctly to find the CUDA libraries and the `nvcc` binary.
 - [sdl2](https://www.libsdl.org/) and [sdl2-image](https://www.libsdl.org/projects/SDL_image/) (optional)
 
 And run Make rule for the desired version.

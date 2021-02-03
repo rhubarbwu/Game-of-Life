@@ -5,6 +5,8 @@
 #include "graphics.h"
 #include "terminal.h"
 
+using namespace std::chrono;
+
 unsigned S, H, W, P, F;
 int T;
 
@@ -19,14 +21,14 @@ int main(int argc, char *argv[]) {
 
     if (S) SDL_DRAW_INIT
 
-    auto last_time = std::chrono::system_clock::now() - std::chrono::milliseconds(P);
+    auto last_time = system_clock::now() - milliseconds(P);
 
     unsigned t = 0;
     while (!interrupted) {
         SDL_QUIT_EVENT_HANDLER
 
-        auto now = std::chrono::system_clock::now();
-        if (std::chrono::duration_cast<std::chrono::milliseconds>(now - last_time).count() >= P) {
+        auto now = system_clock::now();
+        if (duration_cast<milliseconds>(now - last_time).count() >= P) {
             if (S) {
                 SDL_DRAW_MATRIX
             } else {
