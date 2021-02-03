@@ -9,14 +9,12 @@
 
 #include "colours.h"
 
-__device__ const unsigned COLOURS[5] = GREEN;
-
-uint32_t* gpuAlloc(unsigned screen_size);
-void gpuFree(void* gpu_mem);
-unsigned gpuBlit(void* src, void* dst, unsigned screen_size);
-int render(SDL_Surface* screen,
-           void* cuda_pixels,
-           unsigned* field, unsigned S, unsigned H, unsigned W);
+uint32_t *gpuAlloc(unsigned screen_size);
+void gpuFree(void *gpu_mem);
+unsigned gpuBlit(void *src, void *dst, unsigned screen_size);
+int render(SDL_Surface *screen,
+           void *cuda_pixels,
+           unsigned *field, unsigned S, unsigned H, unsigned W);
 
 #define SDL_BOILERPLATE                                                      \
     window = SDL_CreateWindow(                                               \
@@ -82,20 +80,21 @@ int render(SDL_Surface* screen,
     SDL_RenderCopy(renderer, texture, NULL, NULL);              \
     SDL_RenderPresent(renderer);
 
-#define SDL_QUIT_EVENT_HANDLER         \
-    SDL_Event event;                   \
-    if (SDL_PollEvent(&event) &&       \
-        (event.type == SDL_QUIT ||     \
-         (event.type == SDL_KEYDOWN && \
-          event.key.keysym.sym == 'q'))) break;
+#define SDL_QUIT_EVENT_HANDLER           \
+    SDL_Event event;                     \
+    if (SDL_PollEvent(&event) &&         \
+        (event.type == SDL_QUIT ||       \
+         (event.type == SDL_KEYDOWN &&   \
+          event.key.keysym.sym == 'q'))) \
+        break;
 
 #define SDL_WINDOW          \
-    SDL_Renderer* renderer; \
-    SDL_Surface* screen;    \
-    SDL_Texture* texture;   \
-    SDL_Window* window;     \
+    SDL_Renderer *renderer; \
+    SDL_Surface *screen;    \
+    SDL_Texture *texture;   \
+    SDL_Window *window;     \
                             \
-    uint32_t* graphics_buffer;
+    uint32_t *graphics_buffer;
 
 #else
 #define SDL_BOILERPLATE ;

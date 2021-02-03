@@ -1,12 +1,9 @@
 #ifndef FIELD_CUDA_H
 #define FIELD_CUDA_H
 
-#include <curand.h>
-#include <curand_kernel.h>
 #include <math.h>
 
 #include "colours.h"
-#include "cuda.h"
 #include "rules.h"
 
 #define MAX 100

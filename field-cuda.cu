@@ -1,3 +1,7 @@
+#include <curand.h>
+#include <curand_kernel.h>
+
+#include "cuda.h"
 #include "field-cuda.h"
 
 using namespace std;
@@ -26,8 +30,8 @@ __global__ void d_transition(unsigned *field, unsigned H, unsigned W) {
     unsigned *prev_field = field;
 
     unsigned index = threadIdx.x;
-    unsigned i = index / W;                                 
-    unsigned j = index % W;                                 
+    unsigned i = index / W;
+    unsigned j = index % W;
 
     unsigned neighbours = 0;
     NEIGHBOURS

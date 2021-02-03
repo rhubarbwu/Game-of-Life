@@ -2,6 +2,8 @@
 
 using namespace std;
 
+__device__ const unsigned COLOURS[5] = GREEN;
+
 __host__ uint32_t* gpuAlloc(unsigned screen_size) {
     uint32_t* gpu_mem;
 
@@ -28,7 +30,7 @@ __device__ uint32_t getPixColor(unsigned* d_field, unsigned S, unsigned H, unsig
 
     if (d_field[i * W + j] <= ALIVE)
         return COLOURS[d_field[i * W + j]];
-  
+
     return 0;
 }
 
@@ -39,11 +41,10 @@ __global__ void d_render(uint32_t* buf, unsigned* d_field, unsigned S, unsigned 
     buf[pos] = getPixColor(d_field, S, H, W, xPix, yPix);
 }
 
-__host__ int render(SDL_Surface *screen,
-    void* cuda_pixels,
-    unsigned* field, unsigned S, unsigned H, unsigned W) {
-
-    uint32_t*buf = (uint32_t*)cuda_pixels;
+__host__ int render(SDL_Surface* screen,
+                    void* cuda_pixels,
+                    unsigned* field, unsigned S, unsigned H, unsigned W) {
+    uint32_t* buf = (uint32_t*)cuda_pixels;
 
     unsigned* d_field;
     cudaMalloc((void**)&d_field, (H * W) * sizeof(unsigned));
@@ -57,5 +58,5 @@ __host__ int render(SDL_Surface *screen,
     cudaMemcpy(field, d_field, (H * W) * sizeof(unsigned), cudaMemcpyDeviceToHost);
     cudaFree(d_field);
 
-    return gpuBlit(cuda_pixels, screen->pixels, H*W*S*S);
+    return gpuBlit(cuda_pixels, screen->pixels, H * W * S * S);
 }
